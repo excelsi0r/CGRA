@@ -25,6 +25,8 @@ LightingScene.prototype.init = function(application) {
 	// Scene elements
 	this.prism = new MyPrism(this, 8, 20);
 
+	this.cylinder = new MyCylinder(this, 8, 20);
+	
 	// Materials
 	this.materialDefault = new CGFappearance(this);
 };
@@ -88,6 +90,9 @@ LightingScene.prototype.display = function() {
 
 	// Prism
 	this.prism.display();
+	this.translate(3,0,0);
+	this.cylinder.display();
+
 
 	// ---- END Primitive drawing section
 };
