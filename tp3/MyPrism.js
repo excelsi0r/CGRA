@@ -14,7 +14,8 @@
  MyPrism.prototype = Object.create(CGFobject.prototype);
  MyPrism.prototype.constructor = MyPrism;
 
- MyPrism.prototype.initBuffers = function() {
+ MyPrism.prototype.initBuffers = function() 
+ {
  	/*
  	* TODO:
  	* Replace the following lines in order to build a prism with a **single mesh**.
@@ -43,28 +44,31 @@
  	];
  	*/
 
-	var x = 1;
+	var x = 1;	//INITIAL COORDENATES
 	var y = 0;
 	var z = 0;
 
-	var H = 1;
-	var R = 1;
+	var H = 1/this.stacks;	//HEIGHT
+	var R = 1;	//RADIX
 
-	var i0 = 0;
+	var i0 = 0;  //INDDEX
 	var i1 = 1;
 	var i2 = 2;
 	var i3 = 3;
 
-	var nx = 0;
+	var nx = 0;	//NORMALS
 	var ny = 0;
 	var nz = 0;
 
-	var n = (Math.PI * 2) / this.slices;
-	var alpha = 0;
+	var n = (Math.PI * 2) / this.slices; //INCREMENT ANGLE
+	var alpha = 0;	//INITAL ANGLE
 
-	this.vertices = [];
+	this.vertices = []; //ARRAYS
 	this.indices = [];
 	this.normals = [];
+
+	for(j = 0; j < this.stacks; j++)
+	{
 
 	for(i = 0; i < this.slices; i++)
 	{
@@ -113,7 +117,9 @@
 		i3 = i3 + 4;
 		}
 
+		z += H;
 
+	}
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
  };
