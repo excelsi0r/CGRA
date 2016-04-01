@@ -76,7 +76,7 @@
 
 		nx = Math.cos(alpha+n/2);
 		ny = Math.sin(alpha+n/2); 
-		console.log(nx,ny,nz);
+		//console.log(nx,ny,nz);
 
 		//--1º PAR DE PONTOS --
 
