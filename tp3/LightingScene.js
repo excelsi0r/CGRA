@@ -27,7 +27,7 @@ LightingScene.prototype.init = function(application) {
 
 	this.cylinder = new MyCylinder(this, 8, 20);
 
-	this.lamp = new MyLamp(this, 200, 103);
+	this.lamp = new MyLamp(this, 200, 53);
 	
 	// Materials
 	this.materialDefault = new CGFappearance(this);
