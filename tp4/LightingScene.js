@@ -72,12 +72,12 @@ LightingScene.prototype.init = function(application) {
 	this.floorAppearence.loadTexture("/resources/images/floor.png");
 
 	//floor 
-	this.floorAppearence = new CGFappearance(this);
-	this.floorAppearence.setAmbient(0.3,0.3,0.3,1);
-	this.floorAppearence.setDiffuse(0.6,0.6,0.6,1);
-	this.floorAppearence.setSpecular(0.2,0.2,0.2,1);
-	this.floorAppearence.setShininess(120);
-	this.floorAppearence.loadTexture("/resources/images/window.png");
+	this.windowAppearence = new CGFappearance(this);
+	this.windowAppearence.setAmbient(0.3,0.3,0.3,1);
+	this.windowAppearence.setDiffuse(0.6,0.6,0.6,1);
+	this.windowAppearence.setSpecular(0.2,0.2,0.2,1);
+	this.windowAppearence.setShininess(120);
+	this.windowAppearence.loadTexture("/resources/images/window.png");
 	
 };
 
