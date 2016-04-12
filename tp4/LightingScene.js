@@ -33,10 +33,12 @@ LightingScene.prototype.init = function(application) {
 	this.table = new MyTable(this);
 	this.wall = new Plane(this,200);
 	this.floor = new MyQuad(this,0,10,0,12);
-	this.leftwall = new MyQuad(this,-0.5,1.5,-1,1);
-	
-	this.boardA = new Plane(this, BOARD_A_DIVISIONS);
-	this.boardB = new Plane(this, BOARD_B_DIVISIONS);
+	this.leftwall = new MyQuad(this,-0.5,1.5,-0.5,1.5);
+	this.cylinder = new MyCylinder(this,100,100);
+	this.lamp = new MyLamp(this,100,103);
+
+	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
+	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -55,29 +57,73 @@ LightingScene.prototype.init = function(application) {
 	this.materialB.setSpecular(0.8,0.8,0.8,1);	
 	this.materialB.setShininess(120);
 
+	//blue
+	this.blue = new CGFappearance(this);
+	this.blue.setAmbient(0,0,0.3,1);
+	this.blue.setDiffuse(0.2,0.2,0.6,1);
+	this.blue.setSpecular(0.2,0.2,0.8,1);	
+	this.blue.setShininess(120);
+
+	//yellow
+	this.yellow = new CGFappearance(this);
+	this.yellow.setAmbient(0,0,0,1);
+	this.yellow.setDiffuse(0.8,0.8,0.2,1);
+	this.yellow.setSpecular(0.8,0.8,0.2,1);	
+	this.yellow.setShininess(120);
+
 	//Texture Wood
 	this.tableAppearence = new CGFappearance(this);
-	this.tableAppearence.setAmbient(0.3,0.3,0.3,1);
-	this.tableAppearence.setDiffuse(0.8,0.8,0.8,1);
-	this.tableAppearence.setSpecular(0.3,0.3,0.3,1);
-	this.tableAppearence.setShininess(30);
+	this.tableAppearence.setAmbient(0,0,0,1);
+	this.tableAppearence.setDiffuse(1,1,1,1);
+	this.tableAppearence.setSpecular(0.2,0.2,0.2,1);
+	this.tableAppearence.setShininess(50);
 	this.tableAppearence.loadTexture("/resources/images/table.png");
 
 	//floor 
 	this.floorAppearence = new CGFappearance(this);
-	this.floorAppearence.setAmbient(0.3,0.3,0.3,1);
-	this.floorAppearence.setDiffuse(0.6,0.6,0.6,1);
+	this.floorAppearence.setAmbient(0.1,0.1,0.1,1);
+	this.floorAppearence.setDiffuse(0.9,0.9,0.9,1);
 	this.floorAppearence.setSpecular(0.2,0.2,0.2,1);
-	this.floorAppearence.setShininess(120);
+	this.floorAppearence.setShininess(10);
 	this.floorAppearence.loadTexture("/resources/images/floor.png");
 
-	//floor 
+	//window
+	
 	this.windowAppearence = new CGFappearance(this);
 	this.windowAppearence.setAmbient(0.3,0.3,0.3,1);
 	this.windowAppearence.setDiffuse(0.6,0.6,0.6,1);
 	this.windowAppearence.setSpecular(0.2,0.2,0.2,1);
 	this.windowAppearence.setShininess(120);
+	this.windowAppearence.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 	this.windowAppearence.loadTexture("/resources/images/window.png");
+	
+
+	/*
+	//window
+	this.windowAppearence = new CGFappearance(this);
+	this.windowAppearence.setAmbient(0.3,0.3,0.3,1);
+	this.windowAppearence.setDiffuse(0.8,0.2,0.2,1);
+	this.windowAppearence.setSpecular(0.8,0.2,0.2,1);
+	this.windowAppearence.setShininess(120);
+	this.windowAppearence.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+	this.windowAppearence.loadTexture("/resources/images/window.png");
+	*/
+
+	//slide
+	this.slidesAppearance = new CGFappearance(this);
+	this.slidesAppearance.setAmbient(0.1,0.1,0.1,1);
+	this.slidesAppearance.setDiffuse(0.8,0.8,0.8,1);
+	this.slidesAppearance.setSpecular(0.1,0.1,0.1,1);
+	this.slidesAppearance.setShininess(10);
+	this.slidesAppearance.loadTexture("/resources/images/slides.png");
+
+	//board
+	this.boardAppearance = new CGFappearance(this);
+	this.boardAppearance.setAmbient(0.2,0.2,0.2,1);
+	this.boardAppearance.setDiffuse(0.4,0.4,0.4,1);
+	this.boardAppearance.setSpecular(0.9,0.9,0.9,1);
+	this.boardAppearance.setShininess(120);
+	this.boardAppearance.loadTexture("/resources/images/board.png");
 	
 };
 
@@ -89,22 +135,17 @@ LightingScene.prototype.initLights = function() {
 	this.setGlobalAmbientLight(0.2,0.2,0.2, 1.0);
 	
 	// Positions for four lights
+	//LIGHT NUMBER 1
 	this.lights[0].setPosition(4, 6, 1, 1);
 	this.lights[0].setVisible(true); // show marker on light position (different from enabled)
-	
-	this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
-	this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-
-	//this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
-	//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-	//this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
-	//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-
 	this.lights[0].setAmbient(0.1, 0.1, 0.1, 1);
 	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	this.lights[0].setSpecular(1,1,1,1);
-	this.lights[0].enable();
-
+	//this.lights[0].enable();
+	
+	//LIGHT NUMBER 1
+	this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
+	this.lights[1].setVisible(true); // show marker on light position (different from enabled)
 	this.lights[1].setAmbient(0, 0, 0, 1);
 	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	//this.lights[1].enable();
@@ -120,8 +161,8 @@ LightingScene.prototype.initLights = function() {
 	this.lights[2].setConstantAttenuation(0);
 	this.lights[2].setLinearAttenuation(1);
 	this.lights[2].setQuadraticAttenuation(0);
-	
 	//this.lights[2].enable();
+	
 	//LIGHT NUMBER 3
 	this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
 	this.lights[3].setVisible(true);
@@ -133,8 +174,23 @@ LightingScene.prototype.initLights = function() {
 	this.lights[3].setConstantAttenuation(0);
 	this.lights[3].setLinearAttenuation(0);
 	this.lights[3].setQuadraticAttenuation(0.2);
-	
 	//this.lights[3].enable();
+
+	//LIGHT NUMBER 4
+	this.lights[4].setPosition(-1, 6, 7, 1);
+	this.lights[4].setVisible(true); // show marker on light position (different from enabled)
+	this.lights[4].setAmbient(0.4, 0.4, 0.4, 1);
+	this.lights[4].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[4].setSpecular(1,1,1,1);
+	this.lights[4].enable();
+
+	//LIGHT NUMBER 5
+	this.lights[5].setPosition(8, 8, 8, 1);
+	this.lights[5].setVisible(true); // show marker on light position (different from enabled)
+	this.lights[5].setAmbient(0.6, 0.6, 0.6, 1);
+	this.lights[5].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[5].setSpecular(1,1,1,1);
+	this.lights[5].enable();
 };
 
 LightingScene.prototype.updateLights = function() {
@@ -189,13 +245,15 @@ LightingScene.prototype.display = function() {
 		this.translate(0, 4, 7.5);
 		this.rotate(90 * degToRad, 0, 1, 0);
 		this.scale(15, 8, 0.2);
-		this.wall.display();
+		this.windowAppearence.apply();
+		this.leftwall.display();
 	this.popMatrix();
 
 	// Plane Wall
 	this.pushMatrix();
 		this.translate(7.5, 4, 0);
 		this.scale(15, 8, 0.2);
+		this.yellow.apply();
 		this.wall.display();
 	this.popMatrix();
 
@@ -214,9 +272,10 @@ LightingScene.prototype.display = function() {
 	// Board A
 	this.pushMatrix();
 		this.translate(4, 4.5, 0.2);
+
 		this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
 		
-		this.materialA.apply();
+		this.slidesAppearance.apply();
 		this.boardA.display();
 	this.popMatrix();
 
@@ -225,8 +284,28 @@ LightingScene.prototype.display = function() {
 		this.translate(10.5, 4.5, 0.2);
 		this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
 		
-		this.materialB.apply();
+		this.boardAppearance.apply();
 		this.boardB.display();
+	this.popMatrix();
+
+	//Cylinder
+	this.pushMatrix();
+		this.translate(0, 8, 15);
+		this.rotate(Math.PI/2, 1,0,0);
+		this.scale(1, 1, 8.25);
+		
+		this.blue.apply();
+		this.cylinder.display();
+	this.popMatrix();
+
+	//lamp
+	this.pushMatrix();
+		this.translate(8, 8, 8);
+		this.rotate(Math.PI/2, 1,0,0);
+		//this.scale(1, 1, 1);
+		
+		this.materialB.apply();
+		this.lamp.display();
 	this.popMatrix();
 
 	// ---- END Primitive drawing section

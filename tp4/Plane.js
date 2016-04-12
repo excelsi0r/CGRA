@@ -1,6 +1,11 @@
 
 /** Represents a plane with nrDivs divisions along both axis, with center at (0,0) */
-function Plane(scene, nrDivs) {
+function Plane(scene,minS,maxS,minT, maxT, nrDivs) 
+{
+	this.minS = minS || 0;
+	this.minT = minT || 0;
+	this.maxT = maxT || 1;
+	this.maxS = maxS || 1;
 	CGFobject.call(this,scene);
 
 	// nrDivs = 1 if not provided
@@ -34,12 +39,17 @@ Plane.prototype.initBuffers = function() {
 
 	// Generate vertices and normals 
 	this.vertices = [];
-	this.normals = [];
-	
+	this.normals = [];	
 	// Uncomment below to init texCoords
-	//this.texCoords = [];
+	this.texCoords = [];
 
 	var yCoord = 0.5;
+
+	var iS = this.maxS/this.nrDivs;
+	var iT = this.maxT/this.nrDivs;
+
+	var s = this.minS;
+	var t = this.minT;
 
 	for (var j = 0; j <= this.nrDivs; j++) 
 	{
@@ -54,11 +64,14 @@ Plane.prototype.initBuffers = function() {
 			this.normals.push(0,0,1);
 
 			// texCoords should be computed here; uncomment and fill the blanks
-			// this.texCoords.push(..., ...);
+			this.texCoords.push(s,t);
 
 			xCoord += this.patchLength;
+			s += iS;
 		}
 		yCoord -= this.patchLength;
+		s = this.minS;
+		t += iT;
 	}
 	
 	// Generating indices
@@ -112,6 +125,9 @@ Plane.prototype.initBuffers = function() {
 
 	this.primitiveType = this.scene.gl.TRIANGLES;
 */
+
+	
+
 
 	this.initGLBuffers();
 };
