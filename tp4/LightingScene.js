@@ -36,6 +36,7 @@ LightingScene.prototype.init = function(application) {
 	this.leftwall = new MyQuad(this,-0.5,1.5,-0.5,1.5);
 	this.cylinder = new MyCylinder(this,100,100);
 	this.lamp = new MyLamp(this,100,103);
+	this.clock = new MyClock(this);
 
 	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
@@ -124,6 +125,14 @@ LightingScene.prototype.init = function(application) {
 	this.boardAppearance.setSpecular(0.9,0.9,0.9,1);
 	this.boardAppearance.setShininess(120);
 	this.boardAppearance.loadTexture("/resources/images/board.png");
+
+	//clocl
+	this.clockAppearance = new CGFappearance(this);
+	this.clockAppearance.setAmbient(0.2,0.2,0.2,1);
+	this.clockAppearance.setDiffuse(0.4,0.4,0.4,1);
+	this.clockAppearance.setSpecular(0.9,0.9,0.9,1);
+	this.clockAppearance.setShininess(120);
+	this.clockAppearance.loadTexture("/resources/images/clock.png");
 	
 };
 
@@ -307,6 +316,12 @@ LightingScene.prototype.display = function() {
 		this.materialB.apply();
 		this.lamp.display();
 	this.popMatrix();
+
+	this.pushMatrix();
+			this.clockAppearance.apply();
+			this.clock.display();
+	this.popMatrix();
+
 
 	// ---- END Primitive drawing section
 };
