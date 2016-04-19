@@ -36,6 +36,7 @@ LightingScene.prototype.init = function(application) {
 	this.leftwall = new MyQuad(this,-0.5,1.5,-0.5,1.5);
 	this.cylinder = new MyCylinder(this,100,100);
 	this.lamp = new MyLamp(this,100,103);
+	this.clock = new MyClock(this);
 
 	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
@@ -70,6 +71,13 @@ LightingScene.prototype.init = function(application) {
 	this.yellow.setDiffuse(0.8,0.8,0.2,1);
 	this.yellow.setSpecular(0.8,0.8,0.2,1);	
 	this.yellow.setShininess(120);
+
+	//red
+	this.red = new CGFappearance(this);
+	this.red.setAmbient(0,0,0,1);
+	this.red.setDiffuse(0.8,0,0.2,1);
+	this.red.setSpecular(0.8,0,0.2,1);	
+	this.red.setShininess(120);
 
 	//Texture Wood
 	this.tableAppearence = new CGFappearance(this);
@@ -124,11 +132,28 @@ LightingScene.prototype.init = function(application) {
 	this.boardAppearance.setSpecular(0.9,0.9,0.9,1);
 	this.boardAppearance.setShininess(120);
 	this.boardAppearance.loadTexture("/resources/images/board.png");
+
+	//clock
+	this.clockAppearance = new CGFappearance(this);
+	this.clockAppearance.setAmbient(0.2,0.2,0.2,1);
+	this.clockAppearance.setDiffuse(0.4,0.4,0.4,1);
+	this.clockAppearance.setSpecular(0.9,0.9,0.9,1);
+	this.clockAppearance.setShininess(120);
+	this.clockAppearance.loadTexture("/resources/images/clock.png");
+
+	this.setUpdatePeriod(100);
 	
 };
 
 LightingScene.prototype.initCameras = function() {
 	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(30, 30, 30), vec3.fromValues(0, 0, 0));
+};
+
+
+LightingScene.prototype.update = function(currTime)
+{
+	this.clock.update(currTime);
+	
 };
 
 LightingScene.prototype.initLights = function() {
@@ -307,6 +332,12 @@ LightingScene.prototype.display = function() {
 		this.materialB.apply();
 		this.lamp.display();
 	this.popMatrix();
+
+	this.pushMatrix();
+			this.clockAppearance.apply();
+			this.clock.display();
+	this.popMatrix();
+
 
 	// ---- END Primitive drawing section
 };

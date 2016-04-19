@@ -16,13 +16,12 @@
 
  MyDisk.prototype.initBuffers = function() 
  {
- 	
 
 	var x = 1;	//INITIAL COORDENATES
 	var y = 0;
 	var z = 0;
 
-	var R = 1;	//RADIUS
+	var radix = 1;
 
 	var i0 = 1;  //INDDEX
 
@@ -36,53 +35,57 @@
 	this.vertices = []; //ARRAYS
 	this.indices = [];
 	this.normals = [];
-	this.textCoord = [];
+	this.texCoords = [];
 
 	this.vertices.push(0,0,0);
-	this.textCoord.push(0.5,0.5);
+	this.texCoords.push(0.5,0.5);
 
 	for(i = 0; i < this.slices+1; i++)
 	{
 		if(i == 0)
 		{
-			x = R*Math.cos(alpha);
-			y = R*Math.sin(alpha);
+			x = radix*Math.cos(alpha);
+			y = radix*Math.sin(alpha);
 
 			this.vertices.push(x,y,z);
 			this.normals.push(nx, ny, nz);	
-			this.textCoord.push(0.5+x,0.5-y);
+			this.texCoords.push(0.5*Math.cos(alpha) + 0.5,0.5 - (0.5*Math.sin(alpha)));
+
 
 			alpha += n;
 		}
 		else if(i == this.slices)
 		{
-			x = R*Math.cos(alpha);
-			y = R*Math.sin(alpha);
+			x = radix*Math.cos(alpha);
+			y = radix*Math.sin(alpha);
 
 			this.vertices.push(x,y,z);
 			this.normals.push(nx, ny, nz);
-			this.indices.push(0,i0,1);	
-			this.textCoord.push(0.5+x,0.5-y);
+			this.indices.push(0,i0,1);
+			 this.texCoords.push(0.5*Math.cos(alpha) + 0.5,0.5 - (0.5*Math.sin(alpha)));
+	
 		}
 		else
 		{
 			
-			x = R*Math.cos(alpha);
-			y = R*Math.sin(alpha);
+			x = radix*Math.cos(alpha);
+			y = radix*Math.sin(alpha);
 
 			this.vertices.push(x,y,z);
 			this.normals.push(nx, ny, nz);
 			
 
 			this.indices.push(0,i0,i0+1);
-			this.textCoord.push(0.5+x,0.5-y);
+			 this.texCoords.push(0.5*Math.cos(alpha) + 0.5,0.5 - (0.5*Math.sin(alpha)));
 
 			alpha += n;
 			i0++;
 			
+			
 		}
 	}
-	
+
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
+ 	
  };
