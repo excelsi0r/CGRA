@@ -37,6 +37,7 @@ LightingScene.prototype.init = function(application) {
 	this.cylinder = new MyCylinder(this,100,100);
 	this.lamp = new MyLamp(this,100,103);
 	this.clock = new MyClock(this);
+	this.drone = new MyDrone(this);
 
 	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
@@ -71,6 +72,12 @@ LightingScene.prototype.init = function(application) {
 	this.yellow.setDiffuse(0.8,0.8,0.2,1);
 	this.yellow.setSpecular(0.8,0.8,0.2,1);	
 	this.yellow.setShininess(120);
+
+	this.orange = new CGFappearance(this);
+	this.orange.setAmbient(0,0,0,1);
+	this.orange.setDiffuse(1,0.64,0,1);
+	this.orange.setSpecular(1,0.64,0,1);	
+	this.orange.setShininess(120);
 
 	//red
 	this.red = new CGFappearance(this);
@@ -142,6 +149,7 @@ LightingScene.prototype.init = function(application) {
 	this.clockAppearance.loadTexture("/resources/images/clock.png");
 
 	this.setUpdatePeriod(100);
+
 	this.option1 = true;
 	this.option2 = false;
 	this.speed = 3;
@@ -215,7 +223,7 @@ LightingScene.prototype.initLights = function() {
 	//LIGHT NUMBER 5
 	this.lights[5].setPosition(8, 8, 8, 1);
 	this.lights[5].setVisible(true); // show marker on light position (different from enabled)
-	this.lights[5].setAmbient(0.6, 0.6, 0.6, 1);
+	this.lights[5].setAmbient(0.5, 0.5, 0.5, 1);
 	this.lights[5].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	this.lights[5].setSpecular(1,1,1,1);
 	this.lights[5].enable();
@@ -341,12 +349,19 @@ LightingScene.prototype.display = function() {
 			this.clock.display();
 	this.popMatrix();
 
+	this.pushMatrix();
+			this.translate(4, 5, 5);
+			this.rotate(Math.PI,0,1,0);
+			this.orange.apply();
+			this.drone.display();
+	this.popMatrix();
 
 	// ---- END Primitive drawing section
 };
 
 
-LightingScene.prototype.doSomething = function() 
-{
-	console.log("doing Something....");
+
+
+LightingScene.prototype.doSomething = function() {
+	console.log("doing Something...")
 }
