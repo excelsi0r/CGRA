@@ -268,6 +268,7 @@ LightingScene.prototype.display = function() {
 	// ---- BEGIN Primitive drawing section
 
 	// Floor
+	/*
 	this.pushMatrix();
 		this.translate(7.5, 0, 7.5);
 		this.rotate(-90 * degToRad, 1, 0, 0);
@@ -347,16 +348,15 @@ LightingScene.prototype.display = function() {
 	this.pushMatrix();
 			this.clockAppearance.apply();
 			this.clock.display();
-	this.popMatrix();
+	this.popMatrix();*/
 
 	this.pushMatrix();
-			this.translate(4, 5, 5);
-			this.rotate(Math.PI,0,1,0);
-			this.orange.apply();
 			this.drone.display();
 	this.popMatrix();
 
 	// ---- END Primitive drawing section
+
+	
 };
 
 
