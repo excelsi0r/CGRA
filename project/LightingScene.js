@@ -315,7 +315,7 @@ LightingScene.prototype.display = function() {
 	this.pushMatrix();
 		this.translate(0, 8, 15);
 		this.rotate(Math.PI/2, 1,0,0);
-		this.scale(1, 1, 8.25);
+		this.scale(1, 1, 8);
 		
 		this.blue.apply();
 		this.cylinder.display();
@@ -334,8 +334,8 @@ LightingScene.prototype.display = function() {
 	this.pushMatrix();
 			this.clockAppearance.apply();
 			this.clock.display();
-	this.popMatrix();*/
-
+	this.popMatrix();
+*/
 	this.pushMatrix();
 			this.drone.display();
 	this.popMatrix();

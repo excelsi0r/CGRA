@@ -19,6 +19,7 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.semi = new MySemi(this.scene,10,13);
 	this.cyl = new MyCompleteCylinder(this.scene,10,10);
 	this.leg = new MyCurve(this.scene, 10);
+	this.helix = new MyHelix(this.scene, 10,13);
 };
 
 MyDrone.prototype = Object.create(CGFobject.prototype);
@@ -152,6 +153,30 @@ MyDrone.prototype.display = function ()
 		this.scene.rotate(Math.PI/2,0,1,0);
 		this.scene.scale(0.1,0.1 ,2.5);
 		this.cyl.display();
+	this.scene.popMatrix();
+
+	//helix1
+	this.scene.pushMatrix();
+		this.scene.translate(0,0.4,2.5);
+		this.helix.display();
+	this.scene.popMatrix();
+
+	//helix2
+	this.scene.pushMatrix();
+		this.scene.translate(0,0.4,-2.5);
+		this.helix.display();
+	this.scene.popMatrix();
+
+	//helix3
+	this.scene.pushMatrix();
+		this.scene.translate(2.5,0.4,0);
+		this.helix.display();
+	this.scene.popMatrix();
+
+		//helix4
+	this.scene.pushMatrix();
+		this.scene.translate(-2.5,0.4,0);
+		this.helix.display();
 	this.scene.popMatrix();
 
 

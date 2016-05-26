@@ -9,7 +9,6 @@ serialInclude([
 	'MyCylinder.js',
 	'MyLamp.js',
 	'MyTable.js',
-	'MyPrism.js',
 	'MyQuad.js',
 	'MyUnitCubeQuad.js',
 	'Plane.js',
@@ -21,6 +20,7 @@ serialInclude([
 	'MyCurve.js',
 	'MySemi.js',
 	'MyCompleteCylinder.js',
+	'MyHelix.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);
