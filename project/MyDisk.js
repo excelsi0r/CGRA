@@ -6,8 +6,6 @@
  	CGFobject.call(this,scene);
 	
 	this.slices = slices;
-
-
  	this.initBuffers();
  };
 

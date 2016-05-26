@@ -45,7 +45,7 @@ MyInterface.prototype.init = function(application) {
 	
 	// add a slider
 	// must be a numeric variable of the scene, initialized in scene.init e.g.
-	// this.speed=3;
+	 this.speed=3;
 	// min and max values can be specified as parameters
 	
 	this.gui.add(this.scene, 'speed', -5, 5);
@@ -69,11 +69,32 @@ MyInterface.prototype.processKeyboard = function(event) {
 	{
 		case (65):	// only works for capital 'A', as it is
 			console.log("Key 'A' pressed");
+			this.scene.drone.Rotation(10);
+			break;
+
 		case(87):
 			console.log("Key 'W' pressed");
+			this.scene.drone.Translate(1);
+			break;
+
 		case(68):
 			console.log("Key 'D' pressed");
+			this.scene.drone.Rotation(-10);
+			break;
 		case(83):
 			console.log("Key 'S' pressed");
+			this.scene.drone.Translate(2);
+			break;
+
+		case(73):
+			console.log("Key 'I' pressed");
+			this.scene.drone.Translate(3);
+			break;
+
+		case(74):
+			console.log("Key 'J' pressed");
+			this.scene.drone.Translate(4);
+			break;
+
 	};
 };

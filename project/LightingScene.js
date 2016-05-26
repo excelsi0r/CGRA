@@ -38,6 +38,7 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this,100,103);
 	this.clock = new MyClock(this);
 	this.drone = new MyDrone(this);
+	this.curve = new MyCurve(this, 100, 100);
 
 	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
@@ -164,7 +165,6 @@ LightingScene.prototype.initCameras = function() {
 LightingScene.prototype.update = function(currTime)
 {
 	this.clock.update(currTime);
-	
 };
 
 LightingScene.prototype.initLights = function() {
@@ -229,7 +229,8 @@ LightingScene.prototype.initLights = function() {
 	this.lights[5].enable();
 };
 
-LightingScene.prototype.updateLights = function() {
+LightingScene.prototype.updateLights = function()
+{
 	for (i = 0; i < this.lights.length; i++)
 		this.lights[i].update();
 }
@@ -241,31 +242,16 @@ LightingScene.prototype.display = function() {
 	// Clear image and depth buffer everytime we update the scene
 	this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
 	this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-
 	// Initialize Model-View matrix as identity (no transformation)
 	this.updateProjectionMatrix();
 	this.loadIdentity();
-
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
-
 	// Update all lights used
 	this.updateLights();
-
 	// Draw axis
 	this.axis.display();
-
 	this.materialDefault.apply();
-
-	// ---- END Background, camera and axis setup
-
-	
-	// ---- BEGIN Geometric transformation section
-
-	// ---- END Geometric transformation section
-
-
-	// ---- BEGIN Primitive drawing section
 
 	// Floor
 	/*
@@ -353,15 +339,9 @@ LightingScene.prototype.display = function() {
 	this.pushMatrix();
 			this.drone.display();
 	this.popMatrix();
-
-	// ---- END Primitive drawing section
-
-	
 };
 
-
-
-
-LightingScene.prototype.doSomething = function() {
+LightingScene.prototype.doSomething = function()
+ {
 	console.log("doing Something...")
 }

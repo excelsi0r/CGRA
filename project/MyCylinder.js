@@ -16,34 +16,6 @@
 
  MyCylinder.prototype.initBuffers = function() 
  {
- 	/*
- 	* TODO:
- 	* Replace the following lines in order to build a prism with a **single mesh**.
- 	*
- 	* How can the vertices, indices and normals arrays be defined to
- 	* build a prism with varying number of slices and stacks?
- 	*/
-	/*
- 	this.vertices = [
- 	-0.5, -0.5, 0,
- 	0.5, -0.5, 0,
- 	-0.5, 0.5, 0,
- 	0.5, 0.5, 0
- 	];
-
- 	this.indices = [
- 	0, 1, 2, 
- 	3, 2, 1
- 	];
-
- 	this.normals = [
- 	0, 0, 1,
- 	0, 0, 1,
- 	0, 0, 1,
- 	0, 0, 1
- 	];
- 	*/
-
 	var x = 1;	//INITIAL COORDENATES
 	var y = 0;
 	var z = 0;
@@ -80,48 +52,62 @@
 				this.vertices.push(x,y,z);
 				this.normals.push(nx, ny, nz);	
 				alpha += n;
+				
 			}
 			z += H;
+			for(i = 0; i < this.slices; i++)
+			{
+				x = R*Math.cos(alpha);
+				y = R*Math.sin(alpha);
+
+				nx = Math.cos(alpha);
+				ny = Math.sin(alpha);
+
+				this.vertices.push(x,y,z);
+				this.normals.push(nx, ny, nz);	
+				alpha += n;
+				
+			}
+			z += H;
+			for(i = 0; i < this.slices-1; i++)
+			{
+				this.indices.push(i0,i0+this.slices+1,i0+this.slices);
+				this.indices.push(i0+1+this.slices,i0,i0+1);
+				i0++;
+				
+			}
+			this.indices.push(i0,i0-this.slices+1,i0+1);
+			this.indices.push(i0,i0+1,i0+this.slices);
+			i0++;
 		
 		}
 		else
 		{
-			for(i = 0; i < this.slices-1; i++)
+			for(i = 0; i < this.slices; i++)
 			{
-				nx = Math.cos(alpha);
-				ny = Math.sin(alpha);
-
 				x = R*Math.cos(alpha);
 				y = R*Math.sin(alpha);
 
+				nx = Math.cos(alpha);
+				ny = Math.sin(alpha);
+
 				this.vertices.push(x,y,z);
-				this.normals.push(nx, ny, nz);
-
-				this.indices.push(i0+1,i0+this.slices,i0);
-				this.indices.push(i0+this.slices,i0+1,i0+this.slices+1);
-				i0++;
-
+				this.normals.push(nx, ny, nz);	
 				alpha += n;
+				
 			}
-
-			nx = Math.cos(alpha);
-			ny = Math.sin(alpha);
-
-			x = R*Math.cos(alpha);
-			y = R*Math.sin(alpha);
-
-			this.vertices.push(x,y,z);
-			this.normals.push(nx, ny, nz);
-
-			this.indices.push(i0,i0-(this.slices-1),i0+this.slices);
-			this.indices.push(i0-(this.slices-1),i0+1,i0+this.slices);	
-
-			i0 = j*this.slices - this.slices;
 			z += H;
-
-			alpha += n;
+			for(i = 0; i < this.slices-1; i++)
+			{
+				this.indices.push(i0,i0+this.slices+1,i0+this.slices);
+				this.indices.push(i0+1+this.slices,i0,i0+1);
+				i0++;
+				
+			}
+			this.indices.push(i0,i0-this.slices+1,i0+1);
+			this.indices.push(i0,i0+1,i0+this.slices);
+			i0++;
 		}
-
 	}
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
