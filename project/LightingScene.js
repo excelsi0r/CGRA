@@ -26,6 +26,12 @@ LightingScene.prototype.init = function(application) {
 	this.gl.enable(this.gl.CULL_FACE);
 	this.gl.depthFunc(this.gl.LEQUAL);
 
+	this.droneAppearances = new Array();
+	this.droneAppearancesList=new Array();
+	this.currDroneAppearance=0;
+
+	this.droneAppearancesList["textura 1"]=0;
+
 	this.axis = new CGFaxis(this);
 	this.enableTextures(true);
 
@@ -150,6 +156,7 @@ LightingScene.prototype.init = function(application) {
 	this.clockAppearance.loadTexture("/resources/images/clock.png");
 
 	this.setUpdatePeriod(100);
+	this.droneText=new droneText();
 
 	this.option1 = true;
 	this.option2 = false;
@@ -345,3 +352,9 @@ LightingScene.prototype.doSomething = function()
  {
 	console.log("doing Something...")
 }
+
+var droneText=function(){
+	this.texture = "texture1";
+	this.speed = 1;
+
+};
