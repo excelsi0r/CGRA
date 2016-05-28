@@ -34,6 +34,8 @@ LightingScene.prototype.init = function(application) {
 
 	this.axis = new CGFaxis(this);
 	this.enableTextures(true);
+	//UPDATE TIME
+	this.updateperiod = 1000/10;
 
 	// Scene elements
 	this.table = new MyTable(this);
@@ -172,6 +174,7 @@ LightingScene.prototype.initCameras = function() {
 LightingScene.prototype.update = function(currTime)
 {
 	this.clock.update(currTime);
+	this.drone.update();
 };
 
 LightingScene.prototype.initLights = function() {
@@ -261,7 +264,7 @@ LightingScene.prototype.display = function() {
 	this.materialDefault.apply();
 
 	// Floor
-	/*
+	
 	this.pushMatrix();
 		this.translate(7.5, 0, 7.5);
 		this.rotate(-90 * degToRad, 1, 0, 0);
@@ -342,8 +345,9 @@ LightingScene.prototype.display = function() {
 			this.clockAppearance.apply();
 			this.clock.display();
 	this.popMatrix();
-*/
+
 	this.pushMatrix();
+			this.scale(0.5,0.5,0.5);
 			this.drone.display();
 	this.popMatrix();
 };

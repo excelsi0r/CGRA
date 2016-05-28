@@ -12,6 +12,21 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.maxS = maxS || 1;
 	this.ang = (ang * Math.PI)/180 || (20 * Math.PI)/180 ;
 
+	this.helixang1 = 0;
+	this.helixang2 = 0;
+	this.helixang3 = 0;
+	this.helixang4 = 0;
+
+	this.speedN = Math.PI*2/10;
+
+	this.rotclockwise = 1;
+	this.rotnotwise = -1;
+
+	this.helixinc1 = this.speedN;
+	this.helixinc2 = this.speedN;
+	this.helixinc3 = this.speedN*this.rotnotwise;
+	this.helixinc4 = this.speedN*this.rotnotwise;
+	
 	this.x = 0;
 	this.y = 0;
 	this.z = 0;
@@ -31,6 +46,15 @@ MyDrone.prototype.Rotation = function(ang)
 {
 	//this.scene.rotate(Math.PI/3,0,1,0);
 	this.ang += ((ang * Math.PI)/180);
+};
+
+MyDrone.prototype.update = function()
+{
+	this.helixang1 += this.helixinc1;
+	this.helixang2 += this.helixinc2;
+	this.helixang3 += this.helixinc3;
+	this.helixang4 += this.helixinc4;
+	
 };
 
 MyDrone.prototype.Translate = function(direction){
@@ -174,31 +198,35 @@ MyDrone.prototype.display = function ()
 		this.cyl.display();
 	this.scene.popMatrix();
 
-	//helix1
+	//helix1 --forward helix
 	this.scene.pushMatrix();
 		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
 		this.scene.translate(0,0.4,2.5);
+		this.scene.rotate(this.helixang1, 0,1,0);
 		this.helix.display();
 	this.scene.popMatrix();
 
-	//helix2
+	//helix2 -- back helix
 	this.scene.pushMatrix();
 		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
 		this.scene.translate(0,0.4,-2.5);
+		this.scene.rotate(this.helixang3, 0,1,0);
 		this.helix.display();
 	this.scene.popMatrix();
 
-	//helix3
+	//helix3 -- «left helix
 	this.scene.pushMatrix();
 		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
 		this.scene.translate(2.5,0.4,0);
+		this.scene.rotate(this.helixang3, 0,1,0);
 		this.helix.display();
 	this.scene.popMatrix();
 
-		//helix4
+		//helix4 -- right helix
 	this.scene.pushMatrix();
 		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
 		this.scene.translate(-2.5,0.4,0);
+		this.scene.rotate(this.helixang4, 0,1,0);
 		this.helix.display();
 	this.scene.popMatrix();
 	this.scene.popMatrix();
