@@ -35,9 +35,8 @@
 	this.scene.pushMatrix();
 		this.scene.translate(7.25, 7.25, 0);
 		//this.rotate(Math.PI/2, 1,0,0);
-		this.scene.scale(-0.5, -0.5, 0.5);
+		this.scene.scale(-0.5, -0.5, 0.25);
 		
-		//this.materialB.apply();
 		this.clock.display();
 	this.scene.popMatrix();
 

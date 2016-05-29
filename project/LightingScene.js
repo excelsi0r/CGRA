@@ -36,7 +36,7 @@ LightingScene.prototype.init = function(application) {
 	this.axis = new CGFaxis(this);
 	this.enableTextures(true);
 	//UPDATE TIME
-	this.updateperiod = 1000/10;
+	this.updateperiod = 10;
 
 	//Keys
 	this.keyA = false;
@@ -166,7 +166,7 @@ LightingScene.prototype.init = function(application) {
 	this.clockAppearance.setShininess(120);
 	this.clockAppearance.loadTexture("/resources/images/clock.png");
 
-	this.setUpdatePeriod(10);
+	this.setUpdatePeriod(this.updateperiod);
 	this.droneText=new droneText();
 
 	this.option1 = true;
@@ -356,6 +356,7 @@ LightingScene.prototype.display = function() {
 	this.popMatrix();
 
 	this.pushMatrix();
+			this.translate(5,5,5);
 			this.scale(0.5,0.5,0.5);
 			this.drone.display();
 	this.popMatrix();
