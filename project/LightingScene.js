@@ -37,6 +37,7 @@ LightingScene.prototype.init = function(application) {
 	this.enableTextures(true);
 	//UPDATE TIME
 	this.updateperiod = 10;
+	this.carging = 0;
 
 	//Lights 
 
@@ -74,9 +75,20 @@ LightingScene.prototype.init = function(application) {
 	this.clock = new MyClock(this);
 	this.drone = new MyDrone(this);
 	this.curve = new MyCurve(this, 100, 100);
+	this.cargo = new MyCargo(this);
+	this.destination = new MyDestination(this);
 
 	this.boardA = new Plane(this, 0,1,0,1,BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0,1,0,1, BOARD_B_DIVISIONS);
+	
+	this.cargox = 4.5;
+	this.cargoy = 4;
+	this.cargoz = 9.5;
+	this.cargoang = 0;
+
+	this.destx = 11.5;
+	this.desty = 3.8;
+	this.destz = 9.5;
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -201,7 +213,23 @@ LightingScene.prototype.initCameras = function() {
 LightingScene.prototype.update = function(currTime)
 {
 	
+	this.clock.update(currTime);
 	this.drone.update();
+	this.CheckCargoClose();
+	this.CheckCargoDest();
+
+	if(this.carging == 1)
+	{
+		this.cargox = this.drone.hookx;
+		this.cargoy = this.drone.hooky-0.25;
+		this.cargoz = this.drone.hookz;
+
+		if(this.keyA)
+			this.cargoang += ((this.drone.rotationinc * Math.PI)/180);
+
+		if(this.keyD)
+			this.cargoang -= ((this.drone.rotationinc * Math.PI)/180);
+	}
 
 	if(this.luz0){
 		this.lights[0].enable();
@@ -411,9 +439,27 @@ LightingScene.prototype.display = function() {
 	this.popMatrix();
 
 	this.pushMatrix();
-			this.translate(5,5,5);
-			this.scale(0.5,0.5,0.5);
 			this.drone.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+		this.translate(this.cargox,this.cargoy,this.cargoz);
+		this.rotate(this.cargoang, 0,1,0);
+		this.scale(1,0.5,0.7);
+		if(this.carging == 0)
+			this.orange.apply();
+		else if(this.carging == 1)
+			this.red.apply();
+		else if(this.carging == 2)
+			this.yellow.apply();
+		this.cargo.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+		this.translate(this.destx,this.desty,this.destz);
+
+		this.blue.apply();
+		this.destination.display();
 	this.popMatrix();
 };
 
@@ -426,4 +472,41 @@ var droneText=function(){
 	//this.texture = "texture1";
 	//this.speed = 1;
 
+};
+
+LightingScene.prototype.update = function(currTime)
+{
+	this.clock.update(currTime);
+	this.drone.update();
+	this.CheckCargoClose();
+	this.CheckCargoDest();
+
+	if(this.carging == 1)
+	{
+		this.cargox = this.drone.hookx;
+		this.cargoy = this.drone.hooky-0.25;
+		this.cargoz = this.drone.hookz;
+
+		if(this.keyA)
+			this.cargoang += ((this.drone.rotationinc * Math.PI)/180);
+
+		if(this.keyD)
+			this.cargoang -= ((this.drone.rotationinc * Math.PI)/180);
+	}
+};
+
+LightingScene.prototype.CheckCargoClose = function()
+{
+	if(Math.sqrt((this.drone.hookx-this.cargox)*(this.drone.hookx-this.cargox)+(this.drone.hooky-this.cargoy)*(this.drone.hooky-this.cargoy)+(this.drone.hookz-this.cargoz)*(this.drone.hookz-this.cargoz)) < 0.4 )
+	{
+		this.carging = 1;
+	}
+};
+
+LightingScene.prototype.CheckCargoDest = function()
+{
+	if(Math.sqrt((this.destx-this.cargox)*(this.destx-this.cargox)+(this.desty-this.cargoy)*(this.desty-this.cargoy)+(this.destz-this.cargoz)*(this.destz-this.cargoz)) < 0.4 )
+	{
+		this.carging = 2;
+	}
 };
