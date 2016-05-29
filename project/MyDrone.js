@@ -54,6 +54,7 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.helix = new MyHelix(this.scene, 10,13);
 	this.hook = new MyHook(this.scene, 10, 13);
 	
+	
 	this.hookx = this.x;
 	this.hooky = this.y+ this.hook.basey;
 	this.hookz = this.z;
@@ -415,7 +416,6 @@ MyDrone.prototype.display = function ()
 
 	this.scene.droneAppearances.push(this.firstTexture);
 	
-
 	this.secondTexture = new CGFappearance(this.scene);
 	this.secondTexture.loadTexture("/resources/images/table.png");
 

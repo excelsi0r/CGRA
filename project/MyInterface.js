@@ -53,7 +53,7 @@ MyInterface.prototype.init = function(application) {
 	// min and max values can be specified as parameters
 	this.gui.add(this.scene, 'clockMovement');
 	
-	this.gui.add(this.scene, 'speed', -5, 5);
+	//this.gui.add(this.scene, 'speed', -5, 5);
 
 	this.gui.add(this.scene, 'helixSpeed', 0.5 , 2);
 

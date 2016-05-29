@@ -201,7 +201,7 @@ LightingScene.prototype.init = function(application) {
 
 	this.option1 = true;
 	this.option2 = false;
-	this.speed = 3;
+	//	this.speed = 3;
 	
 };
 
@@ -261,7 +261,7 @@ LightingScene.prototype.update = function(currTime)
 		this.lights[5].disable();
 	}
 
-	
+
 	if(this.clockMovement){
 		this.clock.update(currTime);
 		
