@@ -37,22 +37,22 @@
 	var s = (Math.PI/2) / this.stacks;
 	var beta = 0;
 
+	
+		
 	this.vertices = []; //ARRAYS
 	this.indices = [];
 	this.normals = [];
 	this.texCoords = [];
 	
-	var s = 0;
-	var t = 0;
-	var sinc = 1/this.slices;
-	var tinc = 1/this.stacks;
-	for (var a = 0; a <= this.stacks; a++) {
-		for (var b = 0; b < this.slices; b++) {
-			this.texCoords.push(s, t);
-			s += sinc;
+	for(var q = 0; q < this.stacks+1; q++){
+		
+		for(var i = 0; i < this.slices; i++)
+		{
+			this.texCoords.push((1+Math.cos(i * n)*Math.cos(q *s))*0.5,(1+Math.sin(i * n)*Math.cos(q * s))*0.5);
+			
+
 		}
-		s = 0;
-		t += tinc;
+
 	}
 
 	for(j = 0; j < this.stacks+2; j++)
