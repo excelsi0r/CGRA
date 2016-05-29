@@ -38,6 +38,19 @@ LightingScene.prototype.init = function(application) {
 	//UPDATE TIME
 	this.updateperiod = 10;
 
+	//Lights 
+
+	this.luz0 = true;
+	this.luz1 = true;
+	this.luz2 = true;
+	this.luz3 = true;
+	this.luz4 = true;
+	this.luz5 = true;
+
+	//Clock
+
+	this.clockMovement = true;
+
 	//Keys
 	this.keyA = false;
 	this.keyD = false;
@@ -48,6 +61,8 @@ LightingScene.prototype.init = function(application) {
 	this.keyP = false;
 	this.keyL = false;
 	
+	//Helix Speed
+	this.helixSpeed =1 ;
 
 	// Scene elements
 	this.table = new MyTable(this);
@@ -185,8 +200,45 @@ LightingScene.prototype.initCameras = function() {
 
 LightingScene.prototype.update = function(currTime)
 {
-	this.clock.update(currTime);
+	
 	this.drone.update();
+
+	if(this.luz0){
+		this.lights[0].enable();
+	}else{
+		this.lights[0].disable();
+	}
+	if(this.luz1){
+		this.lights[1].enable();
+	}else{
+		this.lights[1].disable();
+	}
+	if(this.luz2){
+		this.lights[2].enable();
+	}else{
+		this.lights[2].disable();
+	}
+	if(this.luz3){
+		this.lights[3].enable();
+	}else{
+		this.lights[3].disable();
+	}
+	if(this.luz4){
+		this.lights[4].enable();
+	}else{
+		this.lights[4].disable();
+	}
+	if(this.luz5){
+		this.lights[5].enable();
+	}else{
+		this.lights[5].disable();
+	}
+
+	
+	if(this.clockMovement){
+		this.clock.update(currTime);
+		
+	}
 };
 
 LightingScene.prototype.initLights = function() {
