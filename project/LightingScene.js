@@ -32,6 +32,8 @@ LightingScene.prototype.init = function(application) {
 
 	this.droneAppearancesList["textura 1"]=0;
 	this.droneAppearancesList["textura 2"]=1;
+	this.droneAppearancesList["textura 3"]=2;
+
 
 	this.axis = new CGFaxis(this);
 	this.enableTextures(true);

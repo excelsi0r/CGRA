@@ -54,7 +54,7 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.helix = new MyHelix(this.scene, 10,13);
 	this.hook = new MyHook(this.scene, 10, 13);
 	
-	
+
 	this.hookx = this.x;
 	this.hooky = this.y+ this.hook.basey;
 	this.hookz = this.z;
@@ -412,13 +412,18 @@ MyDrone.prototype.display = function ()
  MyDrone.prototype.loadTextures = function(){
 
  	this.firstTexture = new CGFappearance(this.scene);
-	this.firstTexture.loadTexture("/resources/images/homer.png");
+	this.firstTexture.loadTexture("/resources/images/table.png");
 
 	this.scene.droneAppearances.push(this.firstTexture);
 	
 	this.secondTexture = new CGFappearance(this.scene);
-	this.secondTexture.loadTexture("/resources/images/table.png");
+	this.secondTexture.loadTexture("/resources/images/strips.png");
 
 	this.scene.droneAppearances.push(this.secondTexture);
+
+	this.thirdTexture = new CGFappearance(this.scene);
+	this.thirdTexture.loadTexture("/resources/images/cloud.png");
+
+	this.scene.droneAppearances.push(this.thirdTexture);
 	
  };
