@@ -12,6 +12,8 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.maxS = maxS || 1;
 	this.ang = (ang * Math.PI)/180 || (20 * Math.PI)/180 ;
 
+	this.hookinc = 0.02;
+
 	this.rotationinc = 5;
 
 	this.inc = 0;
@@ -50,6 +52,7 @@ function MyDrone(scene, minS, maxS, minT, maxT, ang)
 	this.cyl = new MyCompleteCylinder(this.scene,10,10);
 	this.leg = new MyCurve(this.scene, 10);
 	this.helix = new MyHelix(this.scene, 10,13);
+	this.hook = new MyHook(this.scene, 10, 13);
 
 	this.loadTextures();
 };
@@ -60,8 +63,6 @@ MyDrone.prototype.constructor=MyDrone;
 
 MyDrone.prototype.update = function()
 {
-
-	//console.log(this.inc);
 	this.helixang1 += this.helixinc1;
 	this.helixang2 += this.helixinc2;
 	this.helixang3 += this.helixinc3;
@@ -174,12 +175,30 @@ MyDrone.prototype.update = function()
 	{
 		this.Translate(3);
 	}
+	if(this.scene.keyP)
+	{
+		this.TranslateHook(-this.hookinc);
+	}
+	if(this.scene.keyL)
+	{
+		this.TranslateHook(this.hookinc);
+	}
+	
 	
 };
 
 MyDrone.prototype.Rotation = function(ang)
 {
 	this.ang += ((ang * Math.PI)/180);
+};
+
+MyDrone.prototype.TranslateHook = function(inc)
+{		
+	this.hook.hookscale += inc;
+
+	if(this.hook.hookscale < 1)
+		this.hook.hookscale = 1;
+	
 };
 
 
@@ -362,6 +381,15 @@ MyDrone.prototype.display = function ()
 		this.scene.translate(-2.5,0.4,0);
 		this.scene.rotate(this.helixang4, 0,1,0);
 		this.helix.display();
+	this.scene.popMatrix();
+	this.scene.popMatrix();
+
+
+	this.scene.pushMatrix();
+    this.scene.translate(this.x,this.y,this.z);
+    this.scene.rotate(this.ang,0,1,0);
+	this.scene.pushMatrix();
+		this.hook.display();
 	this.scene.popMatrix();
 	this.scene.popMatrix();
 

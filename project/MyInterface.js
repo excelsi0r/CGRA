@@ -148,6 +148,14 @@ MyInterface.prototype.processKeyDown = function(event) {
 			//this.scene.drone.Translate(4);
 			this.scene.keyJ = true;
 			break;
+		case(80):
+			console.log("Key 'P' pressed");
+			this.scene.keyP = true;
+			break;
+		case(76):
+			console.log("Key 'L' pressed");
+			this.scene.keyL = true;
+			break;
 	};
 };
 
@@ -198,5 +206,15 @@ MyInterface.prototype.processKeyUp = function(event) {
 			//this.scene.drone.Translate(4);
 			this.scene.keyJ =false;
 			break;
+		case(80):
+			console.log("Key 'P' pressed");
+			this.scene.keyP = false;
+			break;
+		case(76):
+			console.log("Key 'L' pressed");
+			this.scene.keyL = false;
+			break;
+
+			
 	};
 };

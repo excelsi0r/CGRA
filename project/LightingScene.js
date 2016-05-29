@@ -45,6 +45,9 @@ LightingScene.prototype.init = function(application) {
 	this.keyS = false;
 	this.keyI = false;
 	this.keyJ = false;
+	this.keyP = false;
+	this.keyL = false;
+	
 
 	// Scene elements
 	this.table = new MyTable(this);
