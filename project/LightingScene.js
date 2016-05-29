@@ -48,6 +48,8 @@ LightingScene.prototype.init = function(application) {
 	this.keyP = false;
 	this.keyL = false;
 	
+	//Helix Speed
+	this.helixSpeed =1 ;
 
 	// Scene elements
 	this.table = new MyTable(this);

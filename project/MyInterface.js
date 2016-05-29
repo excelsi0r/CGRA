@@ -50,6 +50,8 @@ MyInterface.prototype.init = function(application) {
 	
 	this.gui.add(this.scene, 'speed', -5, 5);
 
+	this.gui.add(this.scene, 'helixSpeed', 0.5 , 2);
+
 	this.gui.add(this.scene,'currDroneAppearance',this.scene.droneAppearancesList);
 
 	return true;

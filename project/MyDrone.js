@@ -299,10 +299,11 @@ MyDrone.prototype.display = function ()
 
 	//leg1
 	this.scene.pushMatrix();
-		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
+		//this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
 		this.scene.translate(0.25,-1.5,0.5);
 		this.scene.rotate(Math.PI/2,0,1,0);
 		this.scene.scale(0.1,1 , 1);
+		this.scene.blue.apply();
 		this.leg.display();
 	this.scene.popMatrix();
 
@@ -312,6 +313,7 @@ MyDrone.prototype.display = function ()
 		this.scene.translate(0.25,-1.5,-0.5);
 		this.scene.rotate(Math.PI/2,0,1,0);
 		this.scene.scale(0.1,1 , 1);
+		this.scene.blue.apply();
 		this.leg.display();
 	this.scene.popMatrix();
 
@@ -321,6 +323,7 @@ MyDrone.prototype.display = function ()
 		this.scene.translate(-0.25,-1.5,-0.5);
 		this.scene.rotate(Math.PI/2,0,1,0);
 		this.scene.scale(0.1,1 ,-1);
+		this.scene.blue.apply();
 		this.leg.display();
 	this.scene.popMatrix();
 
@@ -330,6 +333,7 @@ MyDrone.prototype.display = function ()
 		this.scene.translate(-0.25,-1.5,0.5);
 		this.scene.rotate(Math.PI/2,0,1,0);
 		this.scene.scale(0.1,1 ,-1);
+		this.scene.blue.apply();
 		this.leg.display();
 	this.scene.popMatrix();
 
@@ -339,6 +343,7 @@ MyDrone.prototype.display = function ()
 		this.scene.translate(-1.25,-1.5,-1.25);
 		this.scene.rotate(Math.PI/2,0,0,0);
 		this.scene.scale(0.1,0.1 ,2.5);
+		
 		this.cyl.display();
 	this.scene.popMatrix();
 
