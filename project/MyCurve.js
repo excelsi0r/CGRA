@@ -28,6 +28,7 @@
 	this.vertices = []; //ARRAYS
 	this.indices = [];
 	this.normals = [];
+	this.textCords = [];
 
 	var nx = 0;	//NORMALS
 	var ny = 1;
@@ -40,6 +41,9 @@
 		{
 			this.vertices.push(x,y,z);
 			this.vertices.push(x+1,y,z);
+
+			this.textCords.push(x,y);
+			this.textCords.push(x+1,y);
 
 			this.normals.push(nx,ny,nz);
 			this.normals.push(nx,ny,nz);
@@ -54,6 +58,9 @@
 
 			this.vertices.push(x,y,z);
 			this.vertices.push(x+1,y,z);
+
+			this.textCords.push(x,y);
+			this.textCords.push(x+1,y);
 
 			this.normals.push(nx,ny,nz);
 			this.normals.push(nx,ny,nz);
@@ -80,6 +87,9 @@
 			
 			this.vertices.push(x,y,z);
 			this.vertices.push(x+1,y,z);
+			
+			this.textCords.push(x,y);
+			this.textCords.push(x+1,y);
 
 			this.normals.push(nx,ny,nz);
 			this.normals.push(nx,ny,nz);

@@ -50,7 +50,7 @@ MyInterface.prototype.init = function(application) {
 	
 	this.gui.add(this.scene, 'speed', -5, 5);
 
-	this.gui.add(this.scene.droneText,'texture',Object.keys(this.scene.droneAppearancesList));
+	this.gui.add(this.scene,'currDroneAppearance',this.scene.droneAppearancesList);
 
 	return true;
 };

@@ -35,7 +35,21 @@
 	this.vertices = []; //ARRAYS
 	this.indices = [];
 	this.normals = [];
-
+	this.texCoords = [];
+	
+	var s = 0;
+	var t = 0;
+	var sinc = 1/this.slices;
+	var tinc = 1/this.stacks;
+	for (var a = 0; a <= this.stacks; a++) {
+		for (var b = 0; b < this.slices; b++) {
+			this.texCoords.push(s);
+			this.texCoords.push(t);
+			s += sinc;
+		}
+		s = 0;
+		t += tinc;
+	}
 	for(j = 0; j < this.stacks; j++)
 	{
 

@@ -261,11 +261,11 @@ MyDrone.prototype.display = function ()
 	this.firstTexture.loadTexture("/resources/images/homer.png");
 
 	this.scene.droneAppearances.push(this.firstTexture);
-	this.scene.droneAppearancesList["texture 1"]=0;
+	
 
 	this.secondTexture = new CGFappearance(this.scene);
-	this.secondTexture.loadTexture("/resources/images/homer.png");
+	this.secondTexture.loadTexture("/resources/images/table.png");
 
 	this.scene.droneAppearances.push(this.secondTexture);
-	this.scene.droneAppearancesList["texture 2"]=1;
+	
  };

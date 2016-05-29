@@ -26,11 +26,12 @@ LightingScene.prototype.init = function(application) {
 	this.gl.enable(this.gl.CULL_FACE);
 	this.gl.depthFunc(this.gl.LEQUAL);
 
-	this.droneAppearances = new Array();
-	this.droneAppearancesList=new Array();
+	this.droneAppearances = [];
+	this.droneAppearancesList= {};
 	this.currDroneAppearance=0;
 
 	this.droneAppearancesList["textura 1"]=0;
+	this.droneAppearancesList["textura 2"]=1;
 
 	this.axis = new CGFaxis(this);
 	this.enableTextures(true);
@@ -366,7 +367,7 @@ LightingScene.prototype.doSomething = function()
 }
 
 var droneText=function(){
-	this.texture = "texture1";
-	this.speed = 1;
+	//this.texture = "texture1";
+	//this.speed = 1;
 
 };
