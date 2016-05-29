@@ -54,6 +54,25 @@ MyDrone.prototype.update = function()
 	this.helixang2 += this.helixinc2;
 	this.helixang3 += this.helixinc3;
 	this.helixang4 += this.helixinc4;
+
+	if(this.scene.keyA){
+		this.Rotation(10)
+	}
+	if(this.scene.keyD){
+		this.Rotation(-10)
+	}
+	if(this.scene.keyW){
+		this.Translate(1);
+	}
+	if(this.scene.keyS){
+		this.Translate(2);
+	}
+	if(this.scene.keyJ){
+		this.Translate(4);
+	}
+	if(this.scene.keyI){
+		this.Translate(3);
+	}
 	
 };
 
@@ -91,9 +110,12 @@ MyDrone.prototype.display = function ()
     this.scene.rotate(this.ang,0,1,0);
 	//first arm
 	this.scene.pushMatrix();
-		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
+		//this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
+
 		this.scene.translate(0,0,0-2.5);
 		this.scene.scale(0.2,0.2, 5);
+		this.scene.droneAppearances[this.scene.currDroneAppearance].apply();
+		//this.scene.blue.apply();
 		this.cyl.display();
 	this.scene.popMatrix();
 

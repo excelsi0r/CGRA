@@ -59,7 +59,7 @@ MyInterface.prototype.init = function(application) {
  * processKeyboard
  * @param event {Event}
  */
-MyInterface.prototype.processKeyboard = function(event) {
+/* MyInterface.prototype.processKeyboard = function(event) {
 	// call CGFinterface default code (omit if you want to override)
 	CGFinterface.prototype.processKeyboard.call(this,event);
 	
@@ -98,5 +98,105 @@ MyInterface.prototype.processKeyboard = function(event) {
 			this.scene.drone.Translate(4);
 			break;
 
+	};
+};*/
+
+/**
+ * processKeyDown
+ * @param event {Event}
+ */
+MyInterface.prototype.processKeyDown = function(event) {
+	// call CGFinterface default code (omit if you want to override)
+	CGFinterface.prototype.processKeyDown.call(this,event);
+	
+	// Check key codes e.g. here: http://www.asciitable.com/
+	// or use String.fromCharCode(event.keyCode) to compare chars
+	console.log("entra");
+	// for better cross-browser support, you may also check suggestions on using event.which in http://www.w3schools.com/jsref/event_key_keycode.asp
+	switch (event.keyCode)
+	{
+		case (65):	// only works for capital 'A', as it is
+			console.log("Key 'A' pressed");
+			//this.scene.drone.rotate(10*(180/Math.PI));	
+			this.scene.keyA = true;
+			break;
+
+		case(87):
+			console.log("Key 'W' pressed");
+			//this.scene.drone.translate(0);
+			this.scene.keyW = true;
+			break;
+		case(68):
+			console.log("Key 'D' pressed");
+			//this.scene.drone.rotate(-10*(180/Math.PI));
+			this.scene.keyD = true;
+			break;
+
+		case(83):
+			console.log("Key 'S' pressed");	
+			this.scene.keyS = true;
+			break;
+
+		case(73):
+			console.log("Key 'I' pressed");
+			//this.scene.drone.Translate(3);
+			this.scene.keyI = true;
+			break;
+
+		case(74):
+			console.log("Key 'J' pressed");
+			//this.scene.drone.Translate(4);
+			this.scene.keyJ = true;
+			break;
+	};
+};
+
+
+
+/**
+ * processKeyUp
+ * @param event {Event}
+ */
+MyInterface.prototype.processKeyUp = function(event) {
+	// call CGFinterface default code (omit if you want to override)
+	CGFinterface.prototype.processKeyUp.call(this,event);
+	
+	// Check key codes e.g. here: http://www.asciitable.com/
+	// or use String.fromCharCode(event.keyCode) to compare chars
+	
+	// for better cross-browser support, you may also check suggestions on using event.which in http://www.w3schools.com/jsref/event_key_keycode.asp
+	switch (event.keyCode)
+	{
+		case (65):	// only works for capital 'A', as it is
+		case(107):	
+			console.log("Key 'A' pressed");
+			//this.scene.drone.rotate(10*(180/Math.PI));	
+			this.scene.keyA = false;
+			break;
+
+		case(87):
+			console.log("Key 'W' pressed");
+			//this.scene.drone.translate(0);
+			this.scene.keyW = false;
+			break;
+		case(68):
+			console.log("Key 'D' pressed");
+			//this.scene.drone.rotate(-10*(180/Math.PI));
+			this.scene.keyD = false;
+			break;
+		case(83):
+			console.log("Key 'S' pressed");
+			this.scene.keyS = false;
+		case(73):
+			console.log("Key 'I' pressed");
+			//this.scene.drone.Translate(3);
+			this.scene.keyI = false;
+			break;
+
+		case(74):
+			console.log("Key 'J' pressed");
+			//this.scene.drone.Translate(4);
+			this.scene.keyJ =false;
+			break;
 	};
 };

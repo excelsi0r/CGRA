@@ -37,6 +37,14 @@ LightingScene.prototype.init = function(application) {
 	//UPDATE TIME
 	this.updateperiod = 1000/10;
 
+	//Keys
+	this.keyA = false;
+	this.keyD = false;
+	this.keyW = false;
+	this.keyS = false;
+	this.keyI = false;
+	this.keyJ = false;
+
 	// Scene elements
 	this.table = new MyTable(this);
 	this.wall = new Plane(this,200);
@@ -157,7 +165,7 @@ LightingScene.prototype.init = function(application) {
 	this.clockAppearance.setShininess(120);
 	this.clockAppearance.loadTexture("/resources/images/clock.png");
 
-	this.setUpdatePeriod(100);
+	this.setUpdatePeriod(10);
 	this.droneText=new droneText();
 
 	this.option1 = true;
