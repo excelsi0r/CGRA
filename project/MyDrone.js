@@ -68,6 +68,11 @@ MyDrone.prototype.constructor=MyDrone;
 
 MyDrone.prototype.update = function()
 {
+	this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+	this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+	this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+	this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
+
 	this.helixang1 += this.helixinc1;
 	this.helixang2 += this.helixinc2;
 	this.helixang3 += this.helixinc3;
@@ -80,10 +85,10 @@ MyDrone.prototype.update = function()
 		this.helixspeed3 = this.speedN;
 		this.helixspeed4 = this.speedN;
 
-		this.helixinc1 = this.helixspeed1*this.rotwise1;
-		this.helixinc2 = this.helixspeed2*this.rotwise2;
-		this.helixinc3 = this.helixspeed3*this.rotwise3;
-		this.helixinc4 = this.helixspeed4*this.rotwise4;
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 	}
 
 	if(this.scene.keyW == false && this.scene.keyS == false)
@@ -114,10 +119,10 @@ MyDrone.prototype.update = function()
 		this.helixspeed3 = this.speedR;
 		this.helixspeed4 = this.speedR;
 
-		this.helixinc1 = this.helixspeed1*this.rotwise1;
-		this.helixinc2 = this.helixspeed2*this.rotwise2;
-		this.helixinc3 = this.helixspeed3*this.rotwise3;
-		this.helixinc4 = this.helixspeed4*this.rotwise4;
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 
 	}
 	if(this.scene.keyD)
@@ -129,10 +134,10 @@ MyDrone.prototype.update = function()
 		this.helixspeed3 = this.speedR;
 		this.helixspeed4 = this.speedR;
 
-		this.helixinc1 = this.helixspeed1*this.rotwise1*-1;
-		this.helixinc2 = this.helixspeed2*this.rotwise2*-1;
-		this.helixinc3 = this.helixspeed3*this.rotwise3*-1;
-		this.helixinc4 = this.helixspeed4*this.rotwise4*-1;
+		this.helixinc1 = this.helixspeed1*this.rotwise1*-1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*-1*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*-1*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*-1*this.scene.helixSpeed;
 	}
 	if(this.scene.keyW)
 	{
@@ -148,10 +153,10 @@ MyDrone.prototype.update = function()
 		this.helixspeed3 = this.speedN;
 		this.helixspeed4 = this.speedN;
 
-		this.helixinc1 = this.helixspeed1*this.rotwise1;
-		this.helixinc2 = this.helixspeed2*this.rotwise2;
-		this.helixinc3 = this.helixspeed3*this.rotwise3;
-		this.helixinc4 = this.helixspeed4*this.rotwise4;
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 	}
 	if(this.scene.keyS)
 	{
@@ -167,18 +172,38 @@ MyDrone.prototype.update = function()
 		this.helixspeed3 = this.speedN;
 		this.helixspeed4 = this.speedN;
 
-		this.helixinc1 = this.helixspeed1*this.rotwise1;
-		this.helixinc2 = this.helixspeed2*this.rotwise2;
-		this.helixinc3 = this.helixspeed3*this.rotwise3;
-		this.helixinc4 = this.helixspeed4*this.rotwise4;
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 	}
 	if(this.scene.keyJ)
 	{
 		this.Translate(4);
+
+		this.helixspeed1 = this.speedL;
+		this.helixspeed2 = this.speedL;
+		this.helixspeed3 = this.speedL;
+		this.helixspeed4 = this.speedL;
+
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 	}
 	if(this.scene.keyI)
 	{
 		this.Translate(3);
+
+		this.helixspeed1 = this.speedR;
+		this.helixspeed2 = this.speedR;
+		this.helixspeed3 = this.speedR;
+		this.helixspeed4 = this.speedR;
+
+		this.helixinc1 = this.helixspeed1*this.rotwise1*this.scene.helixSpeed;
+		this.helixinc2 = this.helixspeed2*this.rotwise2*this.scene.helixSpeed;
+		this.helixinc3 = this.helixspeed3*this.rotwise3*this.scene.helixSpeed;
+		this.helixinc4 = this.helixspeed4*this.rotwise4*this.scene.helixSpeed;
 	}
 	if(this.scene.keyP)
 	{
