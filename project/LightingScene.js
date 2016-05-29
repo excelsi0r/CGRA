@@ -213,7 +213,6 @@ LightingScene.prototype.initCameras = function() {
 LightingScene.prototype.update = function(currTime)
 {
 	
-	this.clock.update(currTime);
 	this.drone.update();
 	this.CheckCargoClose();
 	this.CheckCargoDest();
@@ -474,26 +473,7 @@ var droneText=function(){
 
 };
 
-LightingScene.prototype.update = function(currTime)
-{
-	this.clock.update(currTime);
-	this.drone.update();
-	this.CheckCargoClose();
-	this.CheckCargoDest();
 
-	if(this.carging == 1)
-	{
-		this.cargox = this.drone.hookx;
-		this.cargoy = this.drone.hooky-0.25;
-		this.cargoz = this.drone.hookz;
-
-		if(this.keyA)
-			this.cargoang += ((this.drone.rotationinc * Math.PI)/180);
-
-		if(this.keyD)
-			this.cargoang -= ((this.drone.rotationinc * Math.PI)/180);
-	}
-};
 
 LightingScene.prototype.CheckCargoClose = function()
 {
