@@ -8,9 +8,6 @@
 	this.slices = slices;
 	this.stacks = stacks;
 
-	this.basex = 0;
-	this.basey = -1;
-	this.basez = 0;
 	this.hookscale = 1;
 
  	this.base = new MySemi(this.scene, this.slices,this.stacks);

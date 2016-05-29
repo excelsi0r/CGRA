@@ -22,6 +22,8 @@ serialInclude([
 	'MyCompleteCylinder.js',
 	'MyHelix.js',
 	'MyHook.js',
+	'MyCargo.js',
+	'MyDestination.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);
